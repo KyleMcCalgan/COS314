@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Main {
 
-    // Known optimums for display only — never passed to any algorithm
+    // Known optimums for display only (never passed to any algorithm)
     private static final Map<String, Double> OPTIMUMS = new LinkedHashMap<>();
     static {
         OPTIMUMS.put("f1_l-d_kp_10_269",    295.0);
@@ -48,9 +48,7 @@ public class Main {
         }
     }
 
-    // -----------------------------------------------------------------------
-    // Mode 1 & 2: single instance
-    // -----------------------------------------------------------------------
+    //mode 1 & 2: single instance
 
     private static void runSingle(String algo, long seed, Random rand, Scanner sc, String dataDir) throws Exception {
         System.out.println("\nAvailable instances:");
@@ -86,9 +84,7 @@ public class Main {
         System.out.printf("Runtime (s)     : %.3f%n", timeS);
     }
 
-    // -----------------------------------------------------------------------
-    // Mode 3: full results table
-    // -----------------------------------------------------------------------
+    //mode 3: full results table
 
     private static void runAll(long seed, Random rand, String dataDir) throws Exception {
         String hdr = String.format("%-30s | %-5s | %-6s | %-12s | %-12s | %s",
@@ -105,7 +101,7 @@ public class Main {
             KnapsackInstance inst = KnapsackInstance.parse(dataDir + File.separator + name);
             double opt = OPTIMUMS.getOrDefault(name, Double.NaN);
 
-            // ILS first, then GA — each gets its own derived Random from the shared rand
+            // ILS first, then GA, each gets its own derived Random from the shared rand
             // (so the single seed deterministically produces two sub-seeds)
             long ilsSeed = rand.nextLong();
             long gaSeed  = rand.nextLong();
@@ -124,9 +120,7 @@ public class Main {
         System.out.println(sep);
     }
 
-    // -----------------------------------------------------------------------
-    // Mode 4: Wilcoxon test — seeds 1..10, aggregate across all instances
-    // -----------------------------------------------------------------------
+    //mode 4: Wilcoxon test — seeds 1..10, aggregate across all instances
 
     private static void runWilcoxon(String dataDir) throws Exception {
         System.out.println("\nRunning Wilcoxon test (10 seeds x 11 instances) — this may take a moment...");
@@ -149,9 +143,7 @@ public class Main {
         wilcoxon(gaAll, ilsAll, "GA vs ILS (all instances, seeds 1-10)");
     }
 
-    // -----------------------------------------------------------------------
-    // Wilcoxon signed-rank test
-    // -----------------------------------------------------------------------
+    //Wilcoxon signed-rank test
 
     public static void wilcoxon(double[] ga, double[] ils, String label) {
         int n = ga.length;
@@ -198,7 +190,7 @@ public class Main {
             System.out.println("FAIL TO REJECT H0: no significant difference (alpha=0.05)");
     }
 
-    // Abramowitz & Stegun normal CDF approximation
+    //Abramowitz & Stegun normal CDF approximation
     private static double normalCDF(double z) {
         double t = 1.0 / (1.0 + 0.2316419 * Math.abs(z));
         double p = 1 - (Math.exp(-0.5 * z * z) / Math.sqrt(2 * Math.PI))
@@ -207,9 +199,7 @@ public class Main {
         return z >= 0 ? p : 1 - p;
     }
 
-    // -----------------------------------------------------------------------
-    // Utility: find the data directory
-    // -----------------------------------------------------------------------
+    //utility: find the data directory
 
     private static String findDataDir() {
         // Try CWD/data, then CWD/../data, then CWD/Ass2/data

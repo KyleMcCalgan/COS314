@@ -26,7 +26,7 @@ public class GeneticAlgorithm {
             int[][] newPop = new int[POP_SIZE][inst.n];
             double[] newFit = new double[POP_SIZE];
 
-            // Elitism: copy top ELITISM_COUNT directly
+            //copy top ELITISM_COUNT directly
             int[][] elite = getTopK(pop, fit, ELITISM_COUNT);
             for (int i = 0; i < ELITISM_COUNT; i++) {
                 newPop[i] = elite[i].clone();
@@ -100,7 +100,7 @@ public class GeneticAlgorithm {
         }
     }
 
-    /** Returns top k solutions by fitness (descending). */
+    // Returns top k solutions by fitness (descending).
     private int[][] getTopK(int[][] pop, double[] fitness, int k) {
         Integer[] indices = new Integer[pop.length];
         for (int i = 0; i < indices.length; i++) indices[i] = i;

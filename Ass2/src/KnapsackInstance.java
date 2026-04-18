@@ -14,7 +14,7 @@ public class KnapsackInstance {
         this.items    = items;
     }
 
-    /** Parse a problem file. Line 1: n W. Lines 2..n+1: value weight. */
+    //Parse a problem file. Line 1: n W. Lines 2..n+1: value weight.
     public static KnapsackInstance parse(String filePath) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(filePath));
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -35,7 +35,7 @@ public class KnapsackInstance {
         return new KnapsackInstance(name, n, capacity, items);
     }
 
-    /** Returns total value if weight <= capacity, else 0.0. */
+    //Returns total value if weight <= capacity, else 0.0. 
     public double evaluate(int[] bits) {
         double totalValue  = 0.0;
         double totalWeight = 0.0;
@@ -48,7 +48,7 @@ public class KnapsackInstance {
         return totalWeight <= capacity ? totalValue : 0.0;
     }
 
-    /**
+    /*
      * Repair in-place: drop least value/weight efficient selected items
      * until total weight <= capacity.
      */

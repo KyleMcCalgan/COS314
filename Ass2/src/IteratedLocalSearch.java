@@ -55,7 +55,7 @@ public class IteratedLocalSearch {
         return bits;
     }
 
-    /** Best-improving hill climb: scan all 1-flip neighbours, accept the best. */
+    //Best-improving hill climb: scan all 1-flip neighbours, accept the best.
     private int[] localSearch(int[] bits, KnapsackInstance inst) {
         int[] current    = bits.clone();
         double currentFit = inst.evaluate(current);
@@ -87,7 +87,7 @@ public class IteratedLocalSearch {
         return current;
     }
 
-    /** Flip `strength` distinct random bits, then repair. */
+    // Flip 'strength' distinct random bits, then repair.
     private int[] perturb(int[] bits, int strength, KnapsackInstance inst, Random rand) {
         int[] perturbed = bits.clone();
         List<Integer> indices = new ArrayList<>(inst.n);
